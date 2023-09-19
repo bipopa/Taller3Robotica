@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="robot_scara">
+  <link
+    name="base_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+	<cylinder length="0.05" radius="0.1"/>			
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+    </collision>
+  </link>
+
+  <link name="link1">
+      <origin
+        xyz="-0.0058 0.0026 0"
+        rpy="0 0 0" />
+    <visual>
+      <geometry>
+	<cylinder length="0.6" radius="0.05"/>			
+      </geometry>
+      <material name="green">
+        <color rgba="144 238 144 0.5"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+    </collision>
+  </link>
+
+  <joint 
+    name="joint1" 
+    type="revolute">
+    <origin 
+      xyz="0 0 0.1" 
+      rpy="0 0 0" />
+    <parent 
+      link="base_link" />
+    <child 
+      link="link1" />
+    <axis 
+      xyz="0 0 1" />
+    <limit 
+      effort="50" 
+      velocity="0.5" 
+      lower="-3.4" 
+      upper="3.4"/>
+  </joint>
+
+  <link 
+    name="link2">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.57 1.57" />
+      <geometry>
+	<cylinder length="0.04" radius="0.05"/>			
+      </geometry>
+      <material name="red">
+        <color rgba="255 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+    </collision>
+  </link>
+  
+  <joint 
+    name="joint2" 
+    type="revolute">
+    <origin 
+      xyz="0.005 0 0.15" 
+      rpy="0 0 0"/>
+    <parent 
+      link="link1"/>
+    <child 
+      link="link2" />
+    <axis 
+      xyz="0 1 0"/>
+    <limit 
+      effort="50" 
+      velocity="0.5" 
+      lower="-3.4" 
+      upper="0.4"/>
+  </joint>
+      
+  <link name="link3">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.57 0" />
+      <geometry>
+	<box size="0.05 0.05 0.1"/>			
+      </geometry>
+      <material name="purple">
+        <color rgba="0.6 0.2 0.6 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0"/>
+    </collision>
+  </link>
+
+  <joint 
+    name="joint3" 
+    type="prismatic">
+    <origin 
+      xyz="0.101 0 0" 
+      rpy="0 0 0"/>
+    <parent 
+      link="link2" />
+    <child 
+      link="link3" />
+    <axis 
+      xyz="0 1 0" />
+    <limit 
+      effort="50" 
+      velocity="0.5" 
+      lower="-0.05" 
+      upper="0.05"/>
+  </joint>
+</robot>
+  
